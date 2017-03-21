@@ -5,17 +5,17 @@ import java.util.List;
 
 public class AlarmImpl implements Alarm {
 
+    private List<Time> timeList = new ArrayList<>();
     private boolean shouldRing;
     private boolean count;
-    private TimeImpl time;
-    private List<TimeImpl> timeList = new ArrayList<TimeImpl>();
+    public Time time;
 
     public boolean shouldRing(){
 
         String actualTime = time.getTime();
         shouldRing = false;
 
-        for(TimeImpl t : timeList){
+        for(Time t : timeList){
             if(t.getTime().equals(actualTime)) {
                 if(!count) {
                     shouldRing = true;
@@ -31,11 +31,11 @@ public class AlarmImpl implements Alarm {
         return shouldRing;
     }
 
-    public void addAlarmTime(TimeImpl time){
+    public void addAlarmTime(Time time){
         timeList.add(time);
     }
 
-    public void clearAlarmTime(TimeImpl time){
+    public void clearAlarmTime(Time time){
         timeList.remove(time);
     }
 

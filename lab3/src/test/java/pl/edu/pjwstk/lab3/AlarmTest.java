@@ -28,51 +28,53 @@ public class AlarmTest {
 
     @Test
     public void shouldRingTest(){
-
         TimeImpl timeRing = new TimeImpl();
-        timeRing.setTime("12", "12", "1992", "12", "00");
+        timeRing.setTime("20", "12", "1992", "20", "00");
         alarm.addAlarmTime(timeRing);
 
-        expect(time.getTime()).
-                andReturn("12:00").times(4).
-                andReturn("13:00");
-
+        expect(time.getTime())
+                .andReturn("201219922000")
+                .andReturn("201219922000")
+                .andReturn("201219922000")
+                .andReturn("191219922000")
+                .andReturn("201219922000");
         replay(time);
 
-        assertEquals(alarm.shouldRing(), false);
-        assertEquals(alarm.shouldRing(), true);
-        assertEquals(alarm.shouldRing(), false);
-        assertEquals(alarm.shouldRing(), false);
-        assertEquals(alarm.shouldRing(), true);
+        assertEquals(true, alarm.shouldRing());
+        assertEquals(false, alarm.shouldRing());
+        assertEquals(false, alarm.shouldRing());
+        assertEquals(false, alarm.shouldRing());
+        assertEquals(true, alarm.shouldRing());
 
         verify(time);
     }
 
 
+//    @Test
+//    public void addAlarmTimeTest(){
+//        TimeImpl timeRing = new TimeImpl();
+//        timeRing.setTime("20", "12", "1992", "20", "00");
+//
+//        assertEquals(alarm.shouldRing(), false);
+//
+//        alarm.addAlarmTime(timeRing);
+//
+//        assertEquals(alarm.shouldRing(), true);
+//        verify(time);
+//    }
+
     @Test
-    public void addAlarmTimeTest(){
+    public void clearAlarmTimeTest(){
         TimeImpl timeRing = new TimeImpl();
-        timeRing.setTime("12", "12", "1992", "12", "00");
-
-        assertEquals(alarm.shouldRing(), false);
-
+        timeRing.setTime("20","12","1992","20","05");
         alarm.addAlarmTime(timeRing);
 
-        assertEquals(alarm.shouldRing(), true);
-    }
-
-    @Test
-    public void clearTimeSetTest(){
-        TimeImpl timeRing = new TimeImpl();
-        timeRing.setTime("20", "12", "1992", "12", "00");
-        alarm.addAlarmTime(timeRing);
-
-        expect(time.getTime()).andReturn("201219921205").anyTimes();
+        expect(time.getTime()).andReturn("201219922005").anyTimes();
         replay(time);
 
-        assertEquals(alarm.shouldRing(), true);
+        assertEquals(true, alarm.shouldRing());
         alarm.clearAlarmTime(timeRing);
-        assertEquals(alarm.shouldRing(), false);
+        assertEquals(false, alarm.shouldRing());
 
         verify(time);
     }
