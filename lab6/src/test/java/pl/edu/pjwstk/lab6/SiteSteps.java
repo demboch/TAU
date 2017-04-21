@@ -4,10 +4,6 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
-
 public class SiteSteps {
 
     private final Pages pages;
@@ -15,24 +11,6 @@ public class SiteSteps {
     public SiteSteps(Pages pages) {
         this.pages = pages;
     }
-
-    @Given("user is on main page")
-    public void userOnGunShopPage() {
-        pages.gunshop().openPage();
-    }
-
-//    @When("user write his $idEmail and $idPassword and click login")
-//    public void userWriteEmailAndPassword(String idEmail, String idPassword) {
-//        pages.gunshop().login(idEmail, idPassword);
-//    }
-//
-//    @Then("the element named $linkText should appear on page")
-//    public void clickLinkTextAndLogout(String linkText) {
-//        assertTrue( pages.gunshop().logout(linkText).equals(linkText));
-//    }
-
-    //dfxcgvbhknkm
-
 
     @Given("user is on Login page")
     public void userOnLoginPage() {
@@ -50,9 +28,7 @@ public class SiteSteps {
     }
 
     @Then("user inserts password: $password in input with name: $idPassword")
-    public void userInsertsPasswordData(String idPassword, String password) {
-        pages.gunshop().setPassword(password, idPassword);
-    }
+    public void userInsertsPasswordData(String idPassword, String password) { pages.gunshop().setPassword(password, idPassword); }
 
     @When("user clicks button with class name: $className")
     public void userClicksButton(String className) {

@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import static org.apache.commons.io.FileUtils.copyFile;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class GunShop extends WebDriverPage {
 
@@ -82,6 +80,7 @@ public class GunShop extends WebDriverPage {
         catch(IOException e) {
             e.printStackTrace();
         }
+
         return element.getText();
     }
 
@@ -98,7 +97,7 @@ public class GunShop extends WebDriverPage {
         }
 
         if(element.isDisplayed()) return element.getText();
-        else return "Nope";
+        else return "Failed";
 
     }
 
