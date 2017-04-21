@@ -37,8 +37,12 @@ public class SiteStories extends JUnitStories {
         System.setProperty(
                 //PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/opt/tp/phantomjs-2.1.1-linux-x86_64/bin/phantomjs"); // LINUX
                 //PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "C:/PhantomJS/phantomjs-2.1.1-windows/bin/phantomjs.exe"); // WINDOWS
+<<<<<<< HEAD
                 PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/tmp/phantomjs"); // LINUX (/linux/phantomjs) dla Puźniakowskiego /tmp/phantomjs
 
+=======
+        PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/tmp/phantomjs"); // LINUX
+>>>>>>> 3f5a5ebd5e852bc236343b0e743bdbbf904733a5
         System.setProperty("webdriver.chrome.driver", "/chromedriver/chromedriver.exe"); // /..../chromedriver/chromedriver
         //driver = new ChromeDriver();
         //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
