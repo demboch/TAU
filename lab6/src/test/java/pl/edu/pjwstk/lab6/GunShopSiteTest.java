@@ -35,11 +35,8 @@ public class GunShopSiteTest {
 		caps.setCapability(
 				//PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/opt/tp/phantomjs-2.1.1-linux-x86_64/bin/phantomjs"); // LINUX
 				//PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "C:/PhantomJS/phantomjs-2.1.1-windows/bin/phantomjs.exe"); // WINDOWS
-<<<<<<< HEAD
 				PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/tmp/phantomjs"); // LINUX (/linux/phantomjs) lub dla Puźniakowskiego /tmp/phantomjs
-=======
-		PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/tmp/phantomjs"); // LINUX
->>>>>>> 3f5a5ebd5e852bc236343b0e743bdbbf904733a5
+
 		driver = new PhantomJSDriver(caps);
 	}
 
