@@ -13,5 +13,5 @@ public interface ICountryManager {
     int updateCountry(Country country);
     List<Country> getAllCountries();
     Country getCountry(int id);
-    void clearCountry();
+    void clearCountries();
 }

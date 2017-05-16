@@ -59,6 +59,13 @@ public class CountryManagerTest {
 	}
 
 	@Test
+	public void selectCountryRow() throws SQLException {
+		Country country = new Country(4, "Poland","Warszawa","00-001");
+		countryManager.addCountry(country);
+		assertEquals(country.getId(),countryManager.getCountry((int) country.getId()).getId());
+	}
+
+	@Test
 	public void deleteAllData() throws SQLException {
 		countryManager.clearCountries();
 	}

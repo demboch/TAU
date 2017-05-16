@@ -34,7 +34,7 @@ public class CountryApi {
     )
     @ResponseBody
     public List<Country> getAllCountries(@RequestParam(value = "name", defaultValue = "country") String name) throws SQLException {
-        List<Country> countriesList = new ArrayList();
+        List<Country> countriesList = new ArrayList<Country>();
         countriesList = countryManager.getAllCountries();
         return countriesList;
     }
@@ -53,9 +53,9 @@ public class CountryApi {
     public ResponseEntity<Country> getCountry(@PathVariable("id") int id) throws SQLException {
         Country country = countryManager.getCountry(id);
         if(country == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Country>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(country, HttpStatus.OK);
+        return new ResponseEntity<Country>(country, HttpStatus.OK);
     }
 
     @RequestMapping(

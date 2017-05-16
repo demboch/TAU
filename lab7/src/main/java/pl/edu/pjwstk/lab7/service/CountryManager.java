@@ -12,7 +12,7 @@ import java.util.List;
 import pl.edu.pjwstk.lab7.domain.Country;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class CountryManager {
+public class CountryManager implements ICountryManager{
 
 	private Connection connection;
 
@@ -77,7 +77,7 @@ public class CountryManager {
 
 	}
 
-	Connection getConnection() {
+	public Connection getConnection() {
 		return connection;
 	}
 
