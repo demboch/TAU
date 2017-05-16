@@ -27,7 +27,7 @@ public class SiteSteps {
         pages.gunshop().setUser(email, idEmail);
     }
 
-    @Then("user inserts password: $password in input with name: $idPassword")
+    @When("user inserts password: $password in input with name: $idPassword")
     public void userInsertsPasswordData(String idPassword, String password) { pages.gunshop().setPassword(password, idPassword); }
 
     @When("user clicks button with class name: $className")
@@ -35,9 +35,9 @@ public class SiteSteps {
         pages.gunshop().submitClick(className);
     }
 
-    @Then("user clicks on link with text: $homePageText")
-    public void userClicksOnHomePageLinkText(String homePageText) {
-        pages.gunshop().backHomePage(homePageText);
+    @When("user clicks on link with text: $homePageText")
+    public void userClicksOnHomePageLinkText(String backHomePage) {
+        pages.gunshop().backHomePage(backHomePage);
     }
 
     @Then("site displays failed login text in span with button: $linkText")

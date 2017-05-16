@@ -34,8 +34,13 @@ public class GunShopSiteTest {
 		caps.setCapability("takesScreenshot", true);
 		caps.setCapability(
 				//PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/opt/tp/phantomjs-2.1.1-linux-x86_64/bin/phantomjs"); // LINUX
+<<<<<<< HEAD
+				PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "C:/PhantomJS/phantomjs-2.1.1-windows/bin/phantomjs.exe"); // WINDOWS
+				//PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/tmp/phantomjs"); // LINUX (/linux/phantomjs) lub dla Puźniakowskiego /tmp/phantomjs
+=======
 				//PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "C:/PhantomJS/phantomjs-2.1.1-windows/bin/phantomjs.exe"); // WINDOWS
 				PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/tmp/phantomjs"); // LINUX (/linux/phantomjs) lub dla Puźniakowskiego /tmp/phantomjs
+>>>>>>> 2ad1101a8f0ae2a4b6de5e5f2765c1ef6373cdc4
 
 		driver = new PhantomJSDriver(caps);
 	}
@@ -105,7 +110,8 @@ public class GunShopSiteTest {
 		element.sendKeys("ZŁE_HASŁO"); // złe HASŁO
 		element.submit();
 		String html = driver.getPageSource();
-		assertTrue(html.contains("Please Enter a Valid Email.")); // !html... to test nie przechodzi
+		assertTrue(html.contains("The Adres e-mail field is not a valid e-mail address."));
+		//assertTrue(html.contains("Please Enter a Valid Email.")); // !html... to test nie przechodzi
 		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		assertNotNull(screenshot);
 		FileUtils.copyFile(screenshot, new File("8 - IncorrectEmail.png"));
