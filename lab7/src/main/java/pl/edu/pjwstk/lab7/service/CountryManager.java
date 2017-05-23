@@ -18,12 +18,12 @@ public class CountryManager implements ICountryManager{
 
 	private Connection connection;
 
-	private final static String URL = "jdbc:mysql://localhost:3306/tau";
-	//private final static String URL = "jdbc:hsqldb:hsql://localhost/tau";
-	private final static String USER = "root"; // SA dla hsql, root MySql
+	//private final static String URL = "jdbc:mysql://localhost:3306/tau";
+	private final static String URL = "jdbc:hsqldb:hsql://localhost/tau";
+	private final static String USER = "SA"; // SA dla hsql, root MySql
 	private final static String PASSWORD = "";
-	private final static String DRIVER = "com.mysql.jdbc.Driver";
-	//private final static String DRIVER = "com.hsqldb.jdbc.driver";
+	//private final static String DRIVER = "com.mysql.jdbc.Driver";
+	private final static String DRIVER = "com.hsqldb.jdbc.driver";
 // IDENTITY lub AUTO_INCREMENT
 	private String CREATE_TABLE_COUNTRY = "CREATE TABLE country( id INT NOT NULL IDENTITY , " +
 			"country VARCHAR(35) NOT NULL," +
