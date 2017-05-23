@@ -18,7 +18,7 @@ public class CountryManager implements ICountryManager{
 	private Connection connection;
 
 	//private final static String URL = "jdbc:mysql://localhost:3306/tau";
-	private final static String URL = "jdbc:hsqldb:hsql://localhost/tau";
+	private final static String URL = "jdbc:hsqldb:hsql://localhost/workdb";
 	private final static String USER = "SA"; // SA dla hsql, root MySql
 	private final static String PASSWORD = "";
 	//private final static String DRIVER = "com.mysql.jdbc.Driver";
