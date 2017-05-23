@@ -9,19 +9,21 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
 import pl.edu.pjwstk.lab7.domain.Country;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+@Component
 public class CountryManager implements ICountryManager{
 
 	private Connection connection;
 
-	//private final static String URL = "jdbc:mysql://localhost:3306/tau";
-	private final static String URL = "jdbc:hsqldb:hsql://localhost/tau";
-	private final static String USER = "SA"; // SA dla hsql, root MySql
+	private final static String URL = "jdbc:mysql://localhost:3306/tau";
+	//private final static String URL = "jdbc:hsqldb:hsql://localhost/tau";
+	private final static String USER = "root"; // SA dla hsql, root MySql
 	private final static String PASSWORD = "";
-	//private final static String DRIVER = "com.mysql.jdbc.Driver";
-	private final static String DRIVER = "com.hsqldb.jdbc.driver";
+	private final static String DRIVER = "com.mysql.jdbc.Driver";
+	//private final static String DRIVER = "com.hsqldb.jdbc.driver";
 // IDENTITY lub AUTO_INCREMENT
 	private String CREATE_TABLE_COUNTRY = "CREATE TABLE country( id INT NOT NULL IDENTITY , " +
 			"country VARCHAR(35) NOT NULL," +
@@ -43,10 +45,11 @@ public class CountryManager implements ICountryManager{
 
 	public CountryManager() throws SQLException {
 		try {
+			//DriverManager.registerDriver(new org.hsqldb.jdbcDriver());
 			connection = DriverManager.getConnection(URL, USER, PASSWORD);
 			statement = connection.createStatement();
 
-			ResultSet rs = connection.getMetaData().getTables(null, null, "%",
+			ResultSet rs = connection.getMetaData().getTables(null, null, null,
 					null);
 			boolean tableExists = false;
 			while (rs.next()) {
@@ -83,6 +86,7 @@ public class CountryManager implements ICountryManager{
 	}
 
 	//ADD
+	@Override
 	public int addCountry(Country country) {
 		int count = 0;
 		try {
@@ -100,8 +104,10 @@ public class CountryManager implements ICountryManager{
 	}
 
 	//GET
+	@Override
 	public Country getCountry(int id) {
 		Country c = new Country();
+		int count = 0;
 		try {
 			getCountryStmt.setInt(1, id);
 			ResultSet rs = getCountryStmt.executeQuery();
@@ -111,7 +117,7 @@ public class CountryManager implements ICountryManager{
 				c.setCountry(rs.getString("country"));
 				c.setCity(rs.getString("city"));
 				c.setPostal_code(rs.getString("postal_code"));
-				//break;
+				count = 1;
 			}
 
 		} catch (SQLException e) {
@@ -122,6 +128,7 @@ public class CountryManager implements ICountryManager{
 	}
 
 	//UPDATE
+	@Override
 	public int updateCountry(Country country) {
 		int count = 0;
 		try {
@@ -138,6 +145,7 @@ public class CountryManager implements ICountryManager{
 	}
 
 	//DETETE
+	@Override
 	public int deleteCountry(int id) {
 		int count = 0;
 		try {
@@ -151,6 +159,7 @@ public class CountryManager implements ICountryManager{
 	}
 
 	//GET ALL
+	@Override
 	public List<Country> getAllCountries() {
 		List<Country> countries = new ArrayList<Country>();
 
@@ -180,6 +189,23 @@ public class CountryManager implements ICountryManager{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public int countRow() {
+		int count = 0;
+		try{
+			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM PUBLIC.COUNTRY");
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				count = rs.getRow();
+				//count = rs.getInt("count(*)");
+			}
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		System.out.println("Number of note : " + count);
+		return count;
 	}
 
 }

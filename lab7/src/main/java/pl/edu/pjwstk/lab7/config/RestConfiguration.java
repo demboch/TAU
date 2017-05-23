@@ -10,7 +10,7 @@ import java.util.List;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"pl.edu.pjatk.lab7"})
+@ComponentScan({"pl.edu.pjwstk.lab7"})
 public class RestConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
