@@ -81,8 +81,6 @@ public class CountryManager implements ICountryManager{
 
 	}
 
-
-
 	public Connection getConnection() {
 		return connection;
 	}
@@ -132,31 +130,34 @@ public class CountryManager implements ICountryManager{
 	//UPDATE
 	@Override
 	public int updateCountry(Country country) throws SQLException {
-		int count = 0;
-		try {
+//		int count = 0;
+//		try {
 			updateCountryStmt.setString(1, country.getCountry());
 			updateCountryStmt.setString(2, country.getCity());
 			updateCountryStmt.setString(3, country.getPostal_code());
 			updateCountryStmt.setInt(4, country.getId());
-			count = updateCountryStmt.executeUpdate();
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
+			int count = updateCountryStmt.executeUpdate();
+//		}
+//		catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 		return count;
 	}
 
 	//DETETE
 	@Override
-	public int deleteCountry(Country id) throws SQLException {
-		int count = 0;
-		try {
-			count = deleteCountryStmt.executeUpdate();
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public int deleteCountry(Country country) throws SQLException {
+		deleteCountryStmt.setInt(1, country.getId());
+		int count = deleteCountryStmt.executeUpdate();
 		return count;
+//		int count = 0;
+//		try {
+//			count = deleteCountryStmt.executeUpdate();
+//		}
+//		catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return count;
 	}
 
 	//GET ALL

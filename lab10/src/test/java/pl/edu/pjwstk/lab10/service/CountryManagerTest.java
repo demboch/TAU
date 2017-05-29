@@ -106,8 +106,7 @@ public class CountryManagerTest extends DBTestCase {
 
 	@Test
 	public void checkUpdate() throws Exception{
-		Country updateCountry = new Country("Poland", "HEL","66-666");
-
+		Country updateCountry = new Country(2, "Poland", "HEL","66-666");
 		assertEquals(1,countryManager.updateCountry(updateCountry));
 
 		IDataSet dbDataSet = this.getConnection().createDataSet();
@@ -122,7 +121,7 @@ public class CountryManagerTest extends DBTestCase {
 	}
 	@Test
 	public void checkDelete() throws Exception{
-		Country country = new Country("Polska", "Gdansk", "80-180");
+		Country country = new Country(1,"Polska", "Gdansk", "80-180");
 		assertEquals(1,countryManager.deleteCountry(country));
 
 		IDataSet dbDataSet = this.getConnection().createDataSet();
