@@ -1,7 +1,12 @@
 package pl.edu.pjwstk.lab10.service;
 
+import static org.junit.Assert.assertEquals;
+
 import org.dbunit.Assertion;
 import org.dbunit.DBTestCase;
+import org.dbunit.IDatabaseTester;
+import org.dbunit.PropertiesBasedJdbcDatabaseTester;
+import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.filter.DefaultColumnFilter;
@@ -20,7 +25,7 @@ import java.sql.SQLException;
 
 @RunWith(JUnit4.class)
 public class CountryManagerTest extends DBTestCase {
-	CountryManager countryManager;
+	ICountryManager countryManager;
 
 	public CountryManagerTest() throws Exception {
 		super("CountryManager test");
@@ -78,30 +83,30 @@ public class CountryManagerTest extends DBTestCase {
 		ITable actualTable = dbDataSet.getTable("COUNTRY");
 		ITable filteredTable = DefaultColumnFilter.excludedColumnsTable
 				(actualTable, new String[]{"ID"});
-		IDataSet expectedDataSet = getDataSet("dataset-pm-add-check.xml");
+		IDataSet expectedDataSet = getDataSet("dataset-pm-add.xml");
 		ITable expectedTable = expectedDataSet.getTable("COUNTRY");
 
 		Assertion.assertEquals(expectedTable, filteredTable);
 	}
 	@Test
 	public void checkGetCountry() throws SQLException, Exception {
-		Country country = new Country("Poland", "Sopot", "81-180");
+		Country country = new Country("Poland", "Gdynia", "82-180");
 		countryManager.clearCountries();
 
-//		assertEquals(1,countryManager.addCountry(country));
+		assertEquals(1,countryManager.addCountry(country));
 
-		assertEquals("Poland", countryManager.getCountry(country).getCountry());
-		assertEquals("Sopot", countryManager.getCountry(country).getCity());
+		assertEquals("Poland", countryManager.getCountryFromDB(country).getCountry());
+		assertEquals("Gdynia", countryManager.getCountryFromDB(country).getCity());
 
 		IDataSet expectedDataSet = getDataSet("dataset-pm-get.xml");
 		ITable expectedTable = expectedDataSet.getTable("COUNTRY");
 
-		assertEquals(expectedTable.getValue(1, "country"), countryManager.getCountry(country).getCountry());
+		assertEquals(expectedTable.getValue(2, "country"), countryManager.getCountryFromDB(country).getCountry());
 	}
 
 	@Test
 	public void checkUpdate() throws Exception{
-		Country updateCountry = new Country(2,"Poland", "Gdynia","66-666");
+		Country updateCountry = new Country("Poland", "HEL","66-666");
 
 		assertEquals(1,countryManager.updateCountry(updateCountry));
 
@@ -117,19 +122,16 @@ public class CountryManagerTest extends DBTestCase {
 	}
 	@Test
 	public void checkDelete() throws Exception{
-		Country country = new Country(0,"Polska", "Gdansk", "80-180");
+		Country country = new Country("Polska", "Gdansk", "80-180");
 		assertEquals(1,countryManager.deleteCountry(country));
 
 		IDataSet dbDataSet = this.getConnection().createDataSet();
 		ITable actualTable = dbDataSet.getTable("COUNTRY");
 		ITable filteredTable = DefaultColumnFilter.excludedColumnsTable
 				(actualTable, new String[]{"ID"});
-		IDataSet expectedDataSet = getDataSet("dataset-pm-delete-check.xml");
+		IDataSet expectedDataSet = getDataSet("dataset-pm-delete.xml");
 		ITable expectedTable = expectedDataSet.getTable("COUNTRY");
 
 		Assertion.assertEquals(expectedTable, filteredTable);
-
-
 	}
-
 }

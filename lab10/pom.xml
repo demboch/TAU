@@ -7,13 +7,17 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>4.3.8.RELEASE</spring.version>
+		<com.fasterxml.jackson.version>2.8.7</com.fasterxml.jackson.version>
+		<dbunit.version>2.5.3</dbunit.version>
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.dbunit/dbunit -->
 		<dependency>
 			<groupId>org.dbunit</groupId>
 			<artifactId>dbunit</artifactId>
-			<version>2.5.3</version>
+			<version>${dbunit.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
@@ -24,7 +28,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.9</version>
+			<version>4.12</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
