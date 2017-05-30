@@ -63,13 +63,13 @@ public class CountryManager implements ICountryManager{
 				statement.executeUpdate(CREATE_TABLE_COUNTRY);
 
 			addCountryStmt = this.connection
-					.prepareStatement("INSERT INTO country (id, country, city, postal_code) VALUES (?, ?, ?, ?)");
+					.prepareStatement("INSERT INTO country (country, city, postal_code) VALUES (?, ?, ?)");
 			getCountryStmt = this.connection
-					.prepareStatement("SELECT * FROM country WHERE id = ?");
+					.prepareStatement("SELECT * FROM country WHERE city = ?");
 			updateCountryStmt = this.connection
-					.prepareStatement("UPDATE country SET country = ?, city = ?, postal_code = ? WHERE id = ?");
+					.prepareStatement("UPDATE country SET country = ?, postal_code = ? WHERE city = ?");
 			deleteCountryStmt = this.connection
-					.prepareStatement("DELETE FROM country WHERE id = ?");
+					.prepareStatement("DELETE FROM country WHERE city = ?");
 			getAllCountryStmt = this.connection
 					.prepareStatement("SELECT * FROM country");
 			deleteAllCountryStmt = this.connection
@@ -90,10 +90,10 @@ public class CountryManager implements ICountryManager{
 	public int addCountry(Country country) throws SQLException {
 		int count = 0;
 		try {
-			addCountryStmt.setInt(1, country.getId());
-			addCountryStmt.setString(2, country.getCountry());
-			addCountryStmt.setString(3, country.getCity());
-			addCountryStmt.setString(4, country.getPostal_code());
+			//addCountryStmt.setInt(1, country.getId());
+			addCountryStmt.setString(1, country.getCountry());
+			addCountryStmt.setString(2, country.getCity());
+			addCountryStmt.setString(3, country.getPostal_code());
 
 			count = addCountryStmt.executeUpdate();
 
@@ -109,7 +109,7 @@ public class CountryManager implements ICountryManager{
 		Country c = null;
 		int count = 0;
 		try {
-			getCountryStmt.setInt(1,country.getId());
+			getCountryStmt.setString(1,country.getCity());
 			ResultSet rs = getCountryStmt.executeQuery();
 
 			while (rs.next()) {
@@ -135,21 +135,20 @@ public class CountryManager implements ICountryManager{
 			updateCountryStmt.setString(1, country.getCountry());
 			updateCountryStmt.setString(2, country.getCity());
 			updateCountryStmt.setString(3, country.getPostal_code());
-			updateCountryStmt.setInt(4, country.getId());
-			int count = updateCountryStmt.executeUpdate();
+			//updateCountryStmt.setInt(4, country.getId());
+			return updateCountryStmt.executeUpdate();
 //		}
 //		catch (SQLException e) {
 //			e.printStackTrace();
 //		}
-		return count;
+//		return count;
 	}
 
 	//DETETE
 	@Override
 	public int deleteCountry(Country country) throws SQLException {
-		deleteCountryStmt.setInt(1, country.getId());
-		int count = deleteCountryStmt.executeUpdate();
-		return count;
+		deleteCountryStmt.setString(1, country.getCity());
+		return deleteCountryStmt.executeUpdate();
 //		int count = 0;
 //		try {
 //			count = deleteCountryStmt.executeUpdate();
