@@ -24,14 +24,14 @@ public class ServiceTests {
 
         JdbcDatabaseTester databaseTester = new PropertiesBasedJdbcDatabaseTester();
 
-//        FlatXmlDataSet dataSet = new FlatXmlDataSetBuilder().build(
-//                ServiceTests.class.getClassLoader().
-//                        getResource("dataset-pm.xml").openStream()
-//        );
-//
-//        databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
-//        databaseTester.setDataSet(dataSet);
-//        databaseTester.onSetup();
+        FlatXmlDataSet dataSet = new FlatXmlDataSetBuilder().build(
+                ServiceTests.class.getClassLoader().
+                        getResource("dataset-pm.xml").openStream()
+        );
+
+        databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
+        databaseTester.setDataSet(dataSet);
+        databaseTester.onSetup();
     }
 
     @AfterClass

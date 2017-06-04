@@ -9,13 +9,13 @@ public class Country {
 
 	public Country() {}
 
-//	public Country(int id, String country, String city, String postal_code) {
-//		super();
-//		this.id = id;
-//		this.country = country;
-//		this.city = city;
-//		this.postal_code = postal_code;
-//	}
+	public Country(int id, String country, String city, String postal_code) {
+		super();
+		this.id = id;
+		this.country = country;
+		this.city = city;
+		this.postal_code = postal_code;
+	}
 
 	public Country(String country, String city, String postal_code) {
 		super();
