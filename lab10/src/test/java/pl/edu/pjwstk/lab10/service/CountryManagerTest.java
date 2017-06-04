@@ -27,11 +27,11 @@ public class CountryManagerTest extends DBTestCase {
 	}
 
 	protected DatabaseOperation getSetUpOperation() throws Exception {
-		return DatabaseOperation.CLEAN_INSERT; //INSERT
+		return DatabaseOperation.INSERT;
 	}
 
 	protected DatabaseOperation getTearDownOperation() throws Exception {
-		return DatabaseOperation.NONE; //TRUNCATE_TABLE
+		return DatabaseOperation.TRUNCATE_TABLE;
 	}
 
 	/**
