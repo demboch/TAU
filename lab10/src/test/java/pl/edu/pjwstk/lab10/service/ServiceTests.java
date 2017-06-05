@@ -22,6 +22,7 @@ public class ServiceTests {
         System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME, "SA" );
         System.setProperty( PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "" );
 
+        CountryManager country = new CountryManager();
         JdbcDatabaseTester databaseTester = new PropertiesBasedJdbcDatabaseTester();
 
         FlatXmlDataSet dataSet = new FlatXmlDataSetBuilder().build(

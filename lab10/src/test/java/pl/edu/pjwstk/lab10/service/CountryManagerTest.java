@@ -19,11 +19,11 @@ import java.net.URL;
 
 @RunWith(JUnit4.class)
 public class CountryManagerTest extends DBTestCase {
-	ICountryManager countryManager;
+
+	CountryManager countryManager = new CountryManager();
 
 	public CountryManagerTest() throws Exception {
 		super("CountryManager test");
-		countryManager = new CountryManager(this.getConnection().getConnection());
 	}
 
 	protected DatabaseOperation getSetUpOperation() throws Exception {
@@ -64,7 +64,7 @@ public class CountryManagerTest extends DBTestCase {
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		countryManager = new CountryManager(this.getConnection().getConnection());
+		//countryManager = new CountryManager(this.getConnection().getConnection());
 	}
 
 	@Test

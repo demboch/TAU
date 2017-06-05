@@ -35,12 +35,12 @@ public class CountryManager implements ICountryManager{
 
 	private Statement statement;
 
-	public CountryManager(){}
+	//public CountryManager(){}
 
-	public CountryManager(Connection connection) throws SQLException {
-		try {
-			//this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
-			this.connection = connection;
+	public CountryManager() throws SQLException {
+			DriverManager.registerDriver(new org.hsqldb.jdbcDriver());
+			this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
+			//this.connection = connection;
 			statement = this.connection.createStatement();
 
 			ResultSet rs = this.connection.getMetaData().getTables(null, null, null,
@@ -68,11 +68,6 @@ public class CountryManager implements ICountryManager{
 					.prepareStatement("SELECT * FROM Country");
 			deleteAllCountryStmt = this.connection
 					.prepareStatement("DELETE FROM Country");
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	public Connection getConnection() {
