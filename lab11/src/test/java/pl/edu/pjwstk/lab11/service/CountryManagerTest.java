@@ -49,7 +49,7 @@ public class CountryManagerTest {
         countryManager.addCountry(country);
 
         assertEquals(4, countryManager.getAllCountries().size());
-        assertEquals("Hiszpania",countryManager.findCountryById(3).getCountry());
+        assertEquals("Hiszpania",countryManager.findCountryById(1).getCountry());
     }
 
     @Test
@@ -58,17 +58,13 @@ public class CountryManagerTest {
             assertionMode = DatabaseAssertionMode.NON_STRICT)
     public void deleteCountryTest() {
         assertEquals(4, countryManager.getAllCountries().size());
+        assertEquals("Hiszpania", countryManager.findCountryById(1).getCountry());
 
-        Country country = new Country();
-        country.setCountry("Hiszpania");
-        countryManager.addCountry(country);
-
-        assertEquals(5, countryManager.getAllCountries().size());
-        assertEquals("Hiszpania", countryManager.findCountryById(3).getCountry());
-
+        Country country = countryManager.findCountryById(1);
         countryManager.deleteCountry(country);
 
-        assertEquals(4, countryManager.getAllCountries().size());
+        assertEquals(3, countryManager.getAllCountries().size());
+        assertEquals("Polska", countryManager.findCountryById(3).getCountry());
     }
 
     @Test
@@ -77,23 +73,17 @@ public class CountryManagerTest {
             assertionMode = DatabaseAssertionMode.NON_STRICT)
     public void editCountryTest(){
         assertEquals(4,countryManager.getAllCountries().size());
+        assertEquals("Hiszpania", countryManager.findCountryById(1).getCountry());
 
-        Country country = new Country();
-        country.setCountry("Hiszpania");
-
-        countryManager.addCountry(country);
-
-        assertEquals("Hiszpania", countryManager.findCountryById(3).getCountry());
-
-        //country.setId(5L);
+        Country country = countryManager.findCountryById(1);
+        //country.setId(2L);
         country.setCountry("USA");
         countryManager.updateCountry(country);
 
-        assertEquals("USA",countryManager.findCountryById(3).getCountry());
-
         assertEquals(4,countryManager.getAllCountries().size());
+        assertEquals("USA",countryManager.findCountryById(1).getCountry());
     }
-//
+
 //    @Test
 //    @DatabaseSetup("/fullData.xml")
 //    //   @ExpectedDatabase(value = "/dbSetup.xml")
@@ -116,7 +106,7 @@ public class CountryManagerTest {
         city.setPostal_code("80-180");
         countryManager.addCity(city);
 
-        assertEquals("Gdansk", countryManager.findCityByPostal_code("80-180").getPostal_code());
+        assertEquals("80-180", countryManager.findCityByPostal_code("80-180").getPostal_code());
         assertEquals(2, countryManager.getAllCities().size());
     }
 

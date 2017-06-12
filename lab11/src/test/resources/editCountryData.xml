@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-    <country COUNTRY="Polska"/>
-    <country COUNTRY="Niemcy"/>
-    <country COUNTRY="Francja"/>
-    <country COUNTRY="USA"/>
+    <country ID="1" COUNTRY="USA"/><!--ID="2"-->
+    <country ID="3" COUNTRY="Polska"/>
+    <country ID="4" COUNTRY="Niemcy"/>
+    <country ID="5" COUNTRY="Francja"/>
 </dataset>

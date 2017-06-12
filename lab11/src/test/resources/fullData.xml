@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <city ID="1" CITY="Warszawa" POSTAL_CODE="80-180"/>
+  <city ID="1" CITY="Warszawa" POSTAL_CODE="00-001"/>
 
-  <country COUNTRY="Polska"/>
-  <country COUNTRY="Niemcy"/>
-  <country COUNTRY="Francja"/>
+  <country ID="3" COUNTRY="Polska"/>
+  <country ID="4" COUNTRY="Niemcy"/>
+  <country ID="5" COUNTRY="Francja"/>
 </dataset>
