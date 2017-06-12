@@ -115,7 +115,7 @@ public class CountryMangerHibernateImpl implements CountryManager{
 				country2.setCities(new LinkedList<City>());}
 			country1.getCities().remove(0);
 			country2.getCities().add(0,city);
-		} else System.out.println("NIE MA TAKIEGO NA LYSCIE");
+		} else System.out.println("Brak miasta");
 	}
 
 }
