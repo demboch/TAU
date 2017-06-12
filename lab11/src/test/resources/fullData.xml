@@ -5,4 +5,6 @@
   <country ID="3" COUNTRY="Polska"/>
   <country ID="4" COUNTRY="Niemcy"/>
   <country ID="5" COUNTRY="Francja"/>
+
+  <country_city CITIES_ID="1" COUNTRY_ID="3"/>
 </dataset>

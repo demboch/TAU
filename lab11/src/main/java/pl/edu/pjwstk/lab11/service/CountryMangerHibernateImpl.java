@@ -1,6 +1,7 @@
 package pl.edu.pjwstk.lab11.service;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -54,7 +55,6 @@ public class CountryMangerHibernateImpl implements CountryManager{
 	public Country findCountryById(int id) {
 		return (Country) sessionFactory.getCurrentSession().getNamedQuery("Country.byId").setInteger("id", id).uniqueResult();
 		//sessionFactory.getCurrentSession().get(City.class, id);
-
 	}
 
 	@Override
@@ -85,24 +85,37 @@ public class CountryMangerHibernateImpl implements CountryManager{
 	}
 
 	@Override
+	public City findCityById(int id) {
+		return (City) sessionFactory.getCurrentSession().getNamedQuery("City.byId").setInteger("id", id).uniqueResult();
+	}
+
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<City> getAllCities() {
-		return sessionFactory.getCurrentSession().getNamedQuery("City.showAll").list();
+		return sessionFactory.getCurrentSession().getNamedQuery("City.getAll").list();
 	}
-//	@Override
-//	@SuppressWarnings("unchecked")
-//	public List<City> getAllCities(Country country) {
-//		country = (Country) sessionFactory.getCurrentSession().get(Country.class, country.getId());
-//
-//		List<City> cities = new ArrayList<City>(country.getCities());
-//		return cities;
-//	}
 
-//	@Override
-//	public List<City> searchCity(Long min, Long max) {
-//		return sessionFactory.getCurrentSession().getNamedQuery("City.select")
-//				.setParameter("min", min)
-//				.setParameter("max", max)
-//				.list();
-//	}
+	@Override
+	public void findCityForCountry(Long idCountry1, Long idCountry2, Long idCity) {
+
+		Country country1 = sessionFactory.getCurrentSession().get(Country.class, idCountry1);
+		Country country2 = sessionFactory.getCurrentSession().get(Country.class, idCountry2);
+		City city = sessionFactory.getCurrentSession().get(City.class, idCity);
+
+		boolean have = false;
+		for (City cities : country1.getCities()) {
+			if (cities.getId().compareTo(city.getId()) == 0) {
+				have = true;
+				break;
+			}
+		}
+
+		if (have) {
+			if (country2.getCities() == null) {
+				country2.setCities(new LinkedList<City>());}
+			country1.getCities().remove(0);
+			country2.getCities().add(0,city);
+		} else System.out.println("NIE MA TAKIEGO NA LYSCIE");
+	}
+
 }

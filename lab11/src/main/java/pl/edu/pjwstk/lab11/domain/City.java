@@ -5,10 +5,11 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-		@NamedQuery(name = "City.showAll", query = "Select ci from City ci"),
+		@NamedQuery(name = "City.getAll", query = "Select ci from City ci"),
 		//@NamedQuery(name = "City.update", query = "Update City ci set ci.city = :city, ci.postal_code = :postal_code where ci.id = :id"),
 		//@NamedQuery(name = "City.select", query = "Select ci from City ci where ci.id between :min and :max"),
-		@NamedQuery(name = "City.byPostal_code", query = "Select c from City c where c.postal_code = :postal_code")
+		@NamedQuery(name = "City.byPostal_code", query = "Select ci from City ci where ci.postal_code = :postal_code"),
+		@NamedQuery(name = "City.byId", query = "Select ci from City ci where ci.id = :id")
 })
 public class City {
 

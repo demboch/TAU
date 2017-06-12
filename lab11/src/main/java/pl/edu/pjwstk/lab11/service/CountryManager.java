@@ -19,7 +19,8 @@ public interface CountryManager {
 	void deleteCity(City city);
 	void updateCity(City city);
 	City findCityByPostal_code(String postal_code);
+	City findCityById(int id);
 	List<City> getAllCities();
 
-	//List<City> searchCity (Long min, Long max);
+	void findCityForCountry(Long idCountry1, Long idCountry2, Long idCity);
 }

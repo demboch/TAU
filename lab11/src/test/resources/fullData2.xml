@@ -1,34 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-    <city ID="0" CITY="Tokio" POSTAL_CODE="00-000"/>
-    <city ID="1" CITY="Kioto" POSTAL_CODE="11-111"/>
-    <city ID="2" CITY="Osaka" POSTAL_CODE="22-222"/>
-    <city ID="3" CITY="Jokohama" POSTAL_CODE="33-333"/>
-    <city ID="4" CITY="Nara" POSTAL_CODE="44-444"/>
-    <city ID="5" CITY="Pekin" POSTAL_CODE="55-555"/>
-    <city ID="6" CITY="Szanghaj" POSTAL_CODE="66-666"/>
-    <city ID="7" CITY="Tiencin" POSTAL_CODE="77-777"/>
-    <city ID="8" CITY="Hangzhou" POSTAL_CODE="88-888"/>
-    <city ID="9" CITY="Inczon" POSTAL_CODE="99-999"/>
-    <city ID="10" CITY="Daejeon" POSTAL_CODE="10-100"/>
-    <city ID="11" CITY="Gyeongju" POSTAL_CODE="12-120"/>
-    <city ID="12" CITY="Sedżong" POSTAL_CODE="13-130"/>
+    <city ID="1" CITY="Waszyngton" POSTAL_CODE="00-000"/>
+    <city ID="2" CITY="Moskwa" POSTAL_CODE="11-111"/>
+    <city ID="3" CITY="Pekin" POSTAL_CODE="22-222"/>
 
-    <country ID="0" COUNTRY="Japonia"/>
-    <country ID="1" COUNTRY="Chiny"/>
-    <country ID="2" COUNTRY="Korea"/>
+    <country ID="4" COUNTRY="USA"/>
+    <country ID="5" COUNTRY="ROSJA"/>
+    <country ID="6" COUNTRY="CHINY"/>
 
-    <country_city CITY_ID="0" COUNTRY_ID="0"/>
-    <country_city CITY_ID="1" COUNTRY_ID="0"/>
-    <country_city CITY_ID="2" COUNTRY_ID="0"/>
-    <country_city CITY_ID="3" COUNTRY_ID="0"/>
-    <country_city CITY_ID="4" COUNTRY_ID="0"/>
-    <country_city CITY_ID="5" COUNTRY_ID="1"/>
-    <country_city CITY_ID="6" COUNTRY_ID="1"/>
-    <country_city CITY_ID="7" COUNTRY_ID="1"/>
-    <country_city CITY_ID="8" COUNTRY_ID="1"/>
-    <country_city CITY_ID="9" COUNTRY_ID="2"/>
-    <country_city CITY_ID="10" COUNTRY_ID="2"/>
-    <country_city CITY_ID="11" COUNTRY_ID="2"/>
-    <country_city CITY_ID="12" COUNTRY_ID="2"/>
+    <country_city CITIES_ID="1" COUNTRY_ID="4"/>
+    <country_city CITIES_ID="2" COUNTRY_ID="5"/>
+    <country_city CITIES_ID="3" COUNTRY_ID="6"/>
 </dataset>

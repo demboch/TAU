@@ -18,12 +18,16 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 import pl.edu.pjwstk.lab11.domain.City;
 import pl.edu.pjwstk.lab11.domain.Country;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/beans.xml"})
 @Rollback
-//@Commit
 @Transactional(transactionManager = "txManager")
 @TestExecutionListeners({
         DependencyInjectionTestExecutionListener.class,
@@ -35,8 +39,8 @@ public class CountryManagerTest {
     @Autowired
     CountryManager countryManager;
 
-
-    @Test
+    // COUNTRY
+    @Test // INSERT
     @DatabaseSetup("/fullData.xml")
     //@Ignore
     @ExpectedDatabase(value = "/addCountryData.xml", table = "COUNTRY",
@@ -52,22 +56,15 @@ public class CountryManagerTest {
         assertEquals("Hiszpania",countryManager.findCountryById(1).getCountry());
     }
 
-    @Test
-    @DatabaseSetup("/addCountryData.xml")
-    @ExpectedDatabase(value = "/deleteCountryData.xml", table = "COUNTRY",
-            assertionMode = DatabaseAssertionMode.NON_STRICT)
-    public void deleteCountryTest() {
-        assertEquals(4, countryManager.getAllCountries().size());
-        assertEquals("Hiszpania", countryManager.findCountryById(1).getCountry());
-
-        Country country = countryManager.findCountryById(1);
-        countryManager.deleteCountry(country);
-
+    @Test //SELECT
+    @DatabaseSetup("/fullData.xml")
+    public void selectCountryTest(){
         assertEquals(3, countryManager.getAllCountries().size());
+
         assertEquals("Polska", countryManager.findCountryById(3).getCountry());
     }
 
-    @Test
+    @Test // UPDATE
     @DatabaseSetup("/addCountryData.xml")
     @ExpectedDatabase(value = "/editCountryData.xml", table = "COUNTRY",
             assertionMode = DatabaseAssertionMode.NON_STRICT)
@@ -84,17 +81,22 @@ public class CountryManagerTest {
         assertEquals("USA",countryManager.findCountryById(1).getCountry());
     }
 
-//    @Test
-//    @DatabaseSetup("/fullData.xml")
-//    //   @ExpectedDatabase(value = "/dbSetup.xml")
-//    public void selectCountryShouldBeSuccessful(){
-//        assertEquals(2,countryManager.getAllCountries().size());
-//
-//        assertEquals(1,countryManager.findCountryById(1));
-//
-//    }
+    @Test // DELETE
+    @DatabaseSetup("/addCountryData.xml")
+    @ExpectedDatabase(value = "/deleteCountryData.xml", table = "COUNTRY",
+            assertionMode = DatabaseAssertionMode.NON_STRICT)
+    public void deleteCountryTest() {
+        assertEquals(4, countryManager.getAllCountries().size());
+        assertEquals("Hiszpania", countryManager.findCountryById(1).getCountry());
 
-    // City
+        Country country = countryManager.findCountryById(1);
+        countryManager.deleteCountry(country);
+
+        assertEquals(3, countryManager.getAllCountries().size());
+        assertEquals("Polska", countryManager.findCountryById(3).getCountry());
+    }
+
+    // CITY
     @Test
     @DatabaseSetup("/fullData.xml")
     @ExpectedDatabase(value = "/addCityData.xml", table = "CITY", assertionMode = DatabaseAssertionMode.NON_STRICT)
@@ -110,21 +112,22 @@ public class CountryManagerTest {
         assertEquals(2, countryManager.getAllCities().size());
     }
 
-//    @Test
-//    @DatabaseSetup("/fullData2.xml")
-//    public void searchCityTest() {
-//        assertEquals(5, countryManager.searchCity(3L, 7L).size());
-//
-//        List<City> dbCities = countryManager.searchCity(3L, 7L);
-//        List<City> assertCities = new ArrayList<City>(Arrays.asList(
-//                new City("Jokohama","33-333"),
-//                new City("Nara","44-444"),
-//                new City("Pekin","55-555"),
-//                new City("Szanghaj","66-666"),
-//                new City("Tiencin","77-777")));
-//
-//        for (int i = 0; i < dbCities.size(); i++){
-//            assertEquals(dbCities.get(i).getCity(),  assertCities.get(i).getCity());
-//        }
-//    }
+    @Test
+    @DatabaseSetup("/fullData.xml")
+    public void findCityTest(){
+        assertEquals(1, countryManager.getAllCities().size());
+        assertEquals(3, countryManager.getAllCountries().size());
+
+        Country country1 = countryManager.findCountryById(3);
+        Country country2 = countryManager.findCountryById(4);
+        City city = countryManager.findCityById(1);
+
+        Long co1 = country1.getId();
+        Long co2 = country2.getId();
+        Long ci  = city.getId();
+
+        countryManager.findCityForCountry(co1,co2,ci);
+        assertEquals(1, country2.getCities().size());
+        assertEquals(0, country1.getCities().size());
+    }
 }

@@ -23,18 +23,18 @@ public class Country {
 
 	private Long id;
 	private String country;
-	private List<City> cities; //= new ArrayList<City>();
+	private List<City> cities;
 
-//	public Country() {}
-//
-//	public Country(String country) {
-//		this.country = country;
-//	}
-//
-//	public Country(Long id, String country) {
-//		this.id = id;
-//		this.country = country;
-//	}
+	public Country() {}
+
+	public Country(String country) {
+		this.country = country;
+	}
+
+	public Country(Long id, String country) {
+		this.id = id;
+		this.country = country;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
