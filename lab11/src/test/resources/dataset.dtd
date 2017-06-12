@@ -1,0 +1,23 @@
+<!ELEMENT dataset (
+        CITY*,
+        COUNTRY*,
+        COUNTRY_CITY*)>
+
+        <!ELEMENT CITY EMPTY>
+        <!ATTLIST CITY
+                ID CDATA #REQUIRED
+                CITY CDATA #IMPLIED
+                POSTAL_CODE CDATA #IMPLIED
+                >
+
+        <!ELEMENT COUNTRY EMPTY>
+        <!ATTLIST COUNTRY
+                ID CDATA #REQUIRED
+                COUNTRY CDATA #IMPLIED
+                >
+
+        <!ELEMENT COUNTRY_CITY EMPTY>
+        <!ATTLIST COUNTRY_CITY
+                CITY_ID CDATA #REQUIRED
+                COUNTRY_ID CDATA #REQUIRED
+                >
